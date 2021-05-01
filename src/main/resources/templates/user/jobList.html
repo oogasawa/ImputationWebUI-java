@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+    <head>
+        <title>Job List</title>
+        <!-- 個別CSS読込 -->
+        <link rel="stylesheet" th:href="@{/css/user/list.css}">
+        <!-- 個別JS読込 -->
+        <link rel="stylesheet" th:href="@{/webjars/datatables/css/jquery.dataTables.min.css}">
+        <script th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}" defer></script>
+        <script th:src="@{/js/user/list.js}" defer></script>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="header border-bottom">
+                <h1 class="h2">Job Submission and Results</h1>
+            </div>
+
+            <form id="user-search-form" method="post" th:action="@{/user/jobList}" class="form-inline" th:object="${userListForm}">
+                <div class="container">
+
+                    <div class="row mb-4">
+                        <label for="userId" class="mr-2">User ID: </label>
+                        <input type="text" class="form-control mr-4" th:field="*{userId}"/>
+                        <label for="userName" class="mr-2">User Name: </label>
+                        <input type="text" class="form-control mr-4" th:field="*{userName}"/>
+                    </div>
+
+                    <div class="row mb-4">
+                        <label>Analysis Type: </label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="analysisType" value="SNP" checked>SNP Imputation
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="analysisType" value="HLA">HLA Imputation
+                    </div>
+                    <div class="row mb-4">
+                        <label for="image_file">Upload File: </label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="file" name="image_file" id="image_file" />
+                    </div>
+
+                    <div class="row mb-4">
+                        <!--
+                        <button class="btn btn-primary" type="submit">
+                            Submit
+                        </button>
+                        -->
+                        <button id="btn-search" class="btn btn-primary" type="button">
+                            Submit (REST)
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+            
+            <hr/>
+            
+            <div class="container">
+                <!-- 一覧表示(REST) -->
+                <div class="row mt-5">
+                    <table id="user-list-table" class="table table-striped table-bordered table-hover w-100">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="th-width">Job ID</th>
+                                <th class="th-width">State</th>
+                                <th class="th-width">Results</th>
+                                <th class="th-width"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
