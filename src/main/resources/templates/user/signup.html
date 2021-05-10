@@ -29,29 +29,15 @@
     </div>
     <!-- ユーザー名 -->
     <div class="form-group">
-      <label for="userName" th:text="#{userName}"></label>
-      <input type="text" class="form-control" th:field="*{userName}" th:errorclass="is-invalid"/>
-      <div class="invalid-feedback" th:errors="*{userName}"></div>
+      <label for="userName" th:text="#{nameE}"></label>
+      <input type="text" class="form-control" th:field="*{nameE}" th:errorclass="is-invalid"/>
+      <div class="invalid-feedback" th:errors="*{nameE}"></div>
     </div>
-    <!-- 誕生日 -->
+    <!-- 所属 -->
     <div class="form-group">
-      <label for="birthday" th:text="#{birthday}"></label>
-      <input type="text" class="form-control" placeholder="yyyy/MM/dd" th:field="*{birthday}" th:errorclass="is-invalid"/>
-      <div class="invalid-feedback" th:errors="*{birthday}"></div>
-    </div>
-    <!-- 年齢 -->
-    <div class="form-group">
-      <label for="age" th:text="#{age}"></label>
-      <input type="text" class="form-control" th:field="*{age}" th:errorclass="is-invalid"/>
-      <div class="invalid-feedback" th:errors="*{age}"></div>
-    </div>
-    <!-- 性別 -->
-    <div class="form-group">
-      <div th:each="item : ${genderMap}" class="form-check-inline">
-        <input type="radio" class="form-check-input" th:value="${item.value}" th:field="*{gender}" th:errorclass="is-invalid"/>
-        <label class="form-check-label" th:text="${item.key}"></label>
-      </div>
-      <div class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+      <label for="affliation" th:text="#{affliation}"></label>
+      <input type="text" class="form-control" th:field="*{affliation}" th:errorclass="is-invalid"/>
+      <div class="invalid-feedback" th:errors="*{affliation}"></div>
     </div>
     <!-- 登録ボタン -->
     <input type="submit" th:value="#{user.signup.btn}" class="btn btn-primary w-100 mt-3" />

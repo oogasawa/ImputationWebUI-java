@@ -16,7 +16,9 @@ public class LoginController {
     /** ユーザー一覧画面にリダイレクト */
     @PostMapping("/login")
     public String postLogin() {
-        return "redirect:/user/jobList";
+        return "redirect:/SNP_imputation";
     }
 
 }
+
+        // return "redirect:/user/jobList";

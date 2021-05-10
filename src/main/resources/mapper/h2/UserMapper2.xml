@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapperとxmlのマッピング -->
+<mapper namespace="jp.ac.nig.ddbj.imputation.repository.UserMapper2">
+
+  <!-- マッピング定義(ユーザー) -->
+  <resultMap type="jp.ac.nig.ddbj.imputation.domain.user.model.User" id="user">
+    <id column="id" property="id" />
+    <result column="password" property="password" />
+    <result column="name_j" property="nameJ" />
+    <result column="name_e" property="nameE" />
+    <result column="affliation" property="affliation" />
+    <result column="role" property="role" />
+  </resultMap>
+
+  <!-- ユーザー1件登録 -->
+  <insert id="insertOne">
+    insert into m_user(
+        user_id
+      , password
+      , name_j
+      , name_e
+      , affliation
+      , role
+    )
+    values (
+        #{userId}
+      , #{password}
+      , #{nameJ}
+      , #{nameE}
+      , #{affliation}
+      , #{role}
+    )
+  </insert>
+
+  <!-- ログインユーザー情報取得 -->
+  <select id="findLoginUser" resultType="User">
+    select
+      *
+    from
+      user
+    where
+      id = #{id}
+  </select>
+</mapper>

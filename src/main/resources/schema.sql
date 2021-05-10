@@ -1,3 +1,22 @@
+
+CREATE TABLE IF NOT EXISTS user (
+  id VARCHAR(50) PRIMARY KEY,
+  name_j VARCHAR(100),
+  name_e VARCHAR(100),
+  affliation VARCHAR(250),
+  password VARCHAR(100),
+  role VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS job (
+  id VARCHAR(200) PRIMARY KEY,
+  analysis_type VARCHAR(50),
+  params TEXT,
+  state VARCHAR(50)
+);
+
+
+
 CREATE TABLE IF NOT EXISTS employee (
   id VARCHAR(50) PRIMARY KEY,
   name VARCHAR(50),
