@@ -8,50 +8,43 @@
   <!-- マッピング定義(ユーザー) -->
   <resultMap type="jp.ac.nig.ddbj.imputation.domain.user.model.MUser" id="user">
     <id column="user_id" property="userId" />
-    <result column="password" property="password" />
     <result column="user_name" property="userName" />
-    <result column="birthday" property="birthday" />
-    <result column="age" property="age" />
-    <result column="gender" property="gender" />
-    <result column="department_id" property="departmentId" />
+    <result column="affiliation" property="affiliation" />
+    <result column="password" property="password" />
     <result column="role" property="role" />
-    <association property="department" resultMap="department"/>
-    <collection property="salaryList" resultMap="salary" columnPrefix="salary_"/>
+<!--    <association property="department" resultMap="department"/>
+    <collection property="salaryList" resultMap="salary" columnPrefix="salary_"/> -->
   </resultMap>
 
   <!-- マッピング定義(部署) -->
+  <!--
   <resultMap type="jp.ac.nig.ddbj.imputation.domain.user.model.Department" id="department">
     <id column="department_id" property="departmentId" />
     <result column="department_name" property="departmentName" />
   </resultMap>
-
+-->
   <!-- マッピング定義(給料) -->
+  <!--
   <resultMap type="jp.ac.nig.ddbj.imputation.domain.user.model.Salary" id="salary">
     <id column="user_id" property="userId" />
     <id column="year_month" property="yearMonth" />
     <result column="salary" property="salary" />
   </resultMap>
-
+-->
   <!-- ユーザー1件登録 -->
   <insert id="insertOne">
     insert into m_user(
         user_id
-      , password
       , user_name
-      , birthday
-      , age
-      , gender
-      , department_id
+      , affiliation
+      , password
       , role
     )
     values (
         #{userId}
-      , #{password}
       , #{userName}
-      , #{birthday}
-      , #{age}
-      , #{gender}
-      , #{departmentId}
+      , #{affiliation}
+      , #{password}
       , #{role}
     )
   </insert>
@@ -76,22 +69,16 @@
   <select id="findOne" resultMap="user">
     select
         m_user.user_id
-      , m_user.password
       , m_user.user_name
-      , m_user.birthday
-      , m_user.age
-      , m_user.gender
-      , m_department.department_id
-      , m_department.department_name
-      , t_salary.user_id as salary_user_id
-      , t_salary.year_month as salary_year_month
-      , t_salary.salary as salary_salary
+      , m_user.affiliation
+      , m_user.password
+      , m_job.job_id as job_id
+      , m_job.analysis_type as analysis_type
+      , m_job.status as job_status
     from
       m_user
-      left join m_department
-        on m_user.department_id = m_department.department_id
       left join t_salary
-        on m_user.user_id = t_salary.user_id
+        on m_user.user_id = m_job.user_id
     where
       m_user.user_id = #{userId}
   </select>

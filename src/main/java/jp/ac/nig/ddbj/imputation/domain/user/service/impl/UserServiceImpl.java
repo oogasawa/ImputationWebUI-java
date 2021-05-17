@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     /** ユーザー登録 */
     @Override
     public void signup(MUser user) {
-        user.setDepartmentId(1); // 部署
+        // user.setDepartmentId(1); // 部署
         user.setRole("ROLE_GENERAL"); // ロール
 
         // パスワード暗号化
