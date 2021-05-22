@@ -20,13 +20,18 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <form>
+                        <form method="post" action="#" th:action="@{/SNP_imputation}"
+                              th:object="${snpImputationForm}" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label class="control-label col-md-3" for="fileUpload">Plink format input:</label>
                                 <div class="col-md-8">
                                     <div class="custom-file">
+                                        <!--
                                         <input type="file" class="custom-file-input" id="fileUpload">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
+                                        -->
+                                        <input type="file" class="custom-file-input" id="plinkFile" th:field="*{plinkFile}" />
+                                        <label class="custom-file-label" for="plinkFile">Choose file</label>
                                     </div>
                                 </div>
                             </div>
@@ -36,40 +41,27 @@
 
                                 <div class="col-md-8">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio"
-                                               id="hg19" name="GenomicAssembly"
-                                               class="custom-control-input">
-                                        <label class="custom-control-label" for="hg19">hg19</label>
+                                        <input type="radio" class="custom-control-input" th:field="*{genomicAssembly}" value="hg19" />
+                                        <label class="custom-control-label" th:for="${#ids.prev('genomicAssembly')}" th:text="hg19"></label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio"
-                                               id="hg38" name="GenomicAssembly"
-                                               class="custom-control-input">
-                                        <label class="custom-control-label" for="hg38">hg38</label>
+                                        <input type="radio" class="custom-control-input" th:field="*{genomicAssembly}" value="hg38" />
+                                        <label class="custom-control-label" th:for="${#ids.prev('genomicAssembly')}" th:text="hg38"></label>
                                     </div>
 
                                 </div>
                             </div>
 
 
-
-
-
                             <div class="form-group row">
 
-                                <label class="control-label col-md-3" for="PopulationModel">Population model:</label>
+                                <label class="control-label col-md-3" for="PopulationModelSelector">Population model:</label>
                                 <div class="col-md-8">
 
-                                    <select class="custom-select" id="PopulationModel">
+                                    <select class="custom-select" id="PopulationModelSelector" name="populationModel">
                                         <option selected>Choose One...</option>
-                                        <option value="African">African</option>
-                                        <option value="Asian">Asian</option>
-                                        <option value="European">European</option>
-                                        <option value="Japanese">Japanese</option>
-                                        <option value="Korean">Korean</option>
-                                        <option value="Han Chinese">Han Chinese</option>
-                                        <option value="Hispanic">Hispanic</option>
-                                        <option value="Multi-ethnic">Multi-ethnic</option>
+                                        <option th:each="item : ${populationModelMap}" th:value="${item.value}"
+                                                th:text="${item.key}" th:selected="${item.value == populationModel}">pulldown</option>
                                     </select>
 
                                 </div>
@@ -79,15 +71,13 @@
 
                             <div class="form-group row">
 
-                                <label class="control-label col-md-3" for="GenotypingPlatform">Genotyping platform:</label>
+                                <label class="control-label col-md-3" for="GenotypingPlatformSelector">Genotyping platform:</label>
                                 <div class="col-md-8">
 
-                                    <select class="custom-select" id="GenotypingPlatform">
+                                    <select class="custom-select" id="GenotypingPlatformSelector" name="genotypingPlatform">
                                         <option selected>Choose One...</option>
-                                        <option value="Affymetrix_GenomeWideHumanSNPArray_6.0">Affymetrix Genome-Wide Human SNP Array 6.0</option>
-                                        <option value="Affymetrix_Axom_ASI">Affymetrix Axom &reg; ASI</option>
-                                        <option value="Affymetrix_Axom_Japonica">Affymetrix Axom &reg; Japonica</option>
-                                        <option value="Affymetrix_Axom_Neo">Affymetrix Axom &reg; Neo</option>
+                                        <option th:each="item : ${genotypingPlatformMap}" th:value="${item.value}"
+                                                th:text="${item.key}" th:selected="${item.value == genotypingPlatform}">pulldown</option>
                                     </select>
 
                                 </div>
@@ -96,35 +86,31 @@
 
 
                             <div class="form-group row">
-                                <label class="control-label col-md-3" for="output">Output:</label>
-
-                                <div class="col-md-9">
+                                <label class="control-label col-md-3" for="outputFormat">Output Format:</label>
+                                <div class="col-md-8">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio"
-                                               id="txt" name="output"
-                                               class="custom-control-input">
-                                        <label class="custom-control-label" for="txt">txt</label>
+                                        <input type="radio" class="custom-control-input" th:field="*{outputFormat}" value="txt" />
+                                        <label class="custom-control-label" th:for="${#ids.prev('outputFormat')}" th:text="txt"></label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio"
-                                               id="xlsx" name="output"
-                                               class="custom-control-input">
-                                        <label class="custom-control-label" for="xlsx">xlsx</label>
+                                        <input type="radio" class="custom-control-input" th:field="*{outputFormat}" value="xlsx" />
+                                        <label class="custom-control-label" th:for="${#ids.prev('outputFormat')}" th:text="xlsx"></label>
                                     </div>
-
                                 </div>
                             </div>
 
 
                             <div class="form-group row">
                                 <div class="col-md-9">
-                                    <button type="submit" class="btn btn-default">Submit</button>
-                                    <button type="reset" class="btn btn-default">Reset</button>
+
+                                    <button type="submit">Submit</button>
+                                    <button type="reset">Reset</button>
+
                                 </div>
                             </div>
-                        </form> 
+                        </form>
 
-                    </div> 
+                    </div>
                 </div><!-- div class="row" : end of the form section -->
 
                 <hr />
