@@ -3,10 +3,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Mapperとxmlのマッピング -->
-<mapper namespace="jp.ac.nig.ddbj.imputation.repository.UserMapper">
+<mapper namespace="jp.ac.nig.ddbj.webui.imputation.repository.UserMapper">
 
   <!-- マッピング定義(ユーザー) -->
-  <resultMap type="jp.ac.nig.ddbj.imputation.domain.user.model.MUser" id="user">
+  <resultMap type="jp.ac.nig.ddbj.webui.imputation.domain.user.model.MUser" id="user">
     <id column="user_id" property="userId" />
     <result column="user_name" property="userName" />
     <result column="affiliation" property="affiliation" />
