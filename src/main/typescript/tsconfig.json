@@ -1,0 +1,30 @@
+
+{
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"dist/**/*",
+		"node_modules",
+		"test/**/*"
+	],
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+      "noImplicitAny": true,
+      "isolatedModules": false,
+		"removeComments": true,
+		"sourceMap": true,
+		"lib":[
+			"esnext"
+		],
+		"types": [
+			"jest",
+			"node"
+		]
+	},
+	"moduleResolution": "node"
+}
+

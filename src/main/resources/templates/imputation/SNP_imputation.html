@@ -4,7 +4,7 @@
       layout:decorate="~{layout/layout}">
     <head>
         <title>SNP_imputation</title>
-        <script type="text/javascript" th:src="@{/js/snp_submit.js}" defer></script>
+       <!-- <script type="text/javascript" th:src="@{/js/snp_submit.js}" defer></script> -->
     </head>
     <body>
         <div layout:fragment="content">
@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <form id="snp_submit" method="post" action="#" th:action="@{/SNP_imputation}"
+                        <form id="snp_submit" method="post"  th:action="@{/SNP_imputation}"
                               th:object="${snpImputationForm}" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label class="control-label col-md-3" for="fileUpload">Plink format input:</label>
