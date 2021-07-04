@@ -4,18 +4,21 @@
       layout:decorate="~{layout/layout}">
     <head>
         <title>SNP_imputation</title>
-       <!-- <script type="text/javascript" th:src="@{/js/snp_submit.js}" defer></script> -->
+        <script type="text/javascript" th:src="@{/js/snp_imputation.js}" defer></script>
     </head>
     <body>
         <div layout:fragment="content">
 
+
             <div class="container">
+
                 <div class="row">
                     <div class="col-md-12 mt-3">
                         <h1>SNP Imputation</h1>
                         <hr />
                     </div>
-                </div>
+                </div> <!-- div class="row" : Header Row -->
+
 
 
                 <div class="row">
@@ -23,13 +26,15 @@
 
                         <form id="snp_submit" method="post"  th:action="@{/SNP_imputation}"
                               th:object="${snpImputationForm}" enctype="multipart/form-data">
+
+
                             <div class="form-group row">
                                 <label class="control-label col-md-3" for="fileUpload">Plink format input:</label>
                                 <div class="col-md-8">
                                     <div class="custom-file">
                                         <!--
-                                        <input type="file" class="custom-file-input" id="fileUpload">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                             <input type="file" class="custom-file-input" id="fileUpload">
+                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         -->
                                         <input type="file" class="custom-file-input" id="plinkFile" th:field="*{plinkFile}" />
                                         <label class="custom-file-label" for="plinkFile">Choose file</label>
@@ -109,10 +114,12 @@
 
                                 </div>
                             </div>
+
                         </form>
 
                     </div>
-                </div><!-- div class="row" : end of the form section -->
+
+                </div><!-- div class="row" : Parameter Form Body row --> 
 
                 <hr />
 
@@ -120,54 +127,43 @@
                     <div class="col-md-12">
                         <h2>Job List</h2>
                     </div>
-                </div>
+                </div> <!-- div class="row" : Job List Header row -->
 
 
                 <div class="row">
-                    <div class="col-md-12">
-
+                    <div class="col-md-12 table-responsive">
 
                         <table class="table">
                             <thead class="thead-light">
-                                <tr>
-                                    <th>Job ID</th>
-                                    <th>State</th>
-                                    <th>Result</th>
+                                <tr> 
+                                    <th style="width: 20%">Job ID</th>
+                                    <th style="width: 40%">Parameters</th>
+                                    <th style="width: 20%">State</th>
+                                    <th style="width: 20%">Result</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Footer 1</th>
-                                    <th>Footer 2</th>
-                                    <th>Footer 3</th>
-                                </tr>
-                            </tfoot>
                             <tbody>
-                                <tr>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                </tr>
-                                <tr>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                </tr>
-                                <tr>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
+                                <tr th:each="jobInfo : ${jobList}">
+                                    <td th:text="${jobInfo.jobId}"></td>
+                                    <td th:text="${jobInfo.params}"></td>
+                                    <td th:text="${jobInfo.state}"></td>
+                                    <td>
+                                        <input type="image" src="images/details.png"
+                                               width="32" height="32" />
+                                        <input class="deleteJobButton" type="image" src="images/delete.png"
+                                               width="32" height="32" />
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
 
                     </div>
-                </div>
+                </div> <!-- div class="row" : Job List Body row -->
 
 
+            </div> <!-- div class="container" -->
 
-            </div>
-        </div>
+        </div> <!-- div layout:fragment="content" -->
     </body>
 </html>
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import jp.ac.nig.ddbj.webui.imputation.domain.job.model.MSnpJob;
+import jp.ac.nig.ddbj.webui.imputation.domain.job.model.MHlaJob;
 import lombok.Data;
 
 /**
@@ -17,7 +17,7 @@ import lombok.Data;
  * @author oogasawa
  */
 @Data
-public class SnpImputationForm {
+public class HlaImputationForm {
 
     private MultipartFile plinkFile;
     private String genomicAssembly = "hg19";
@@ -26,7 +26,7 @@ public class SnpImputationForm {
     private String outputFormat = "xlsx";
 
     private String jobId;
-    private List<MSnpJob> jobList;
+    private List<MHlaJob> jobList;
 }
 
 

@@ -1,3 +1,4 @@
+/*
 .sidebar {
   position: fixed;
   display: block;
@@ -15,3 +16,23 @@
   overflow-y: auto;
   height: calc(100vh - 58px);
 }
+*/
+
+#jobid-column {
+    width: 150px;
+}
+
+#parameters-column {
+    width: 200px;
+}
+
+
+#state-column {
+    width: 100px;
+}
+
+#result-column {
+    width: 100px;
+}
+
+

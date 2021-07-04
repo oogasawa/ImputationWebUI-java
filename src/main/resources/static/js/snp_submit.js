@@ -18,6 +18,15 @@ $(function() {
         event.preventDefault();
         performSubmitAction();
     });
+
+
+
+
+    function deleteJob(jobId) {
+        alert(jobId);
+    }
+
+
 });
 
 

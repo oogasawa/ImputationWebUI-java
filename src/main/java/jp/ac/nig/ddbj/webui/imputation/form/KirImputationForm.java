@@ -17,7 +17,7 @@ import lombok.Data;
  * @author oogasawa
  */
 @Data
-public class SnpImputationForm {
+public class KirImputationForm {
 
     private MultipartFile plinkFile;
     private String genomicAssembly = "hg19";
