@@ -31,3 +31,6 @@ target/
 
 # IntelliJ
 .idea
+
+# h2db persistence dir
+data
